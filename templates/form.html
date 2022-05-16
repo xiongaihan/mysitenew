@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+{% load staticfiles %}
+{% block title %}{{ page_title }}{% endblock %}
+
+
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ form_title }}</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+                        {% for field in form %}
+                        <!-- 如果是隐藏的标签，没有label字段，需要进行筛选 -->
+                        {% if not field.is_hidden %}
+                        <label for="{{field.id_for_label}}">{{field.label}}</label>
+                        {% endif %}
+                        {{field}}
+                        <!-- 错误提示 -->
+                        <p>{{field.errors.as_text}}</p>
+                        {% endfor %}
+                        <span id="tip">{{ form.non_field_errors}}</span>
+                        <!-- 清除浮动 -->
+                        <div class="clearfix"></div>
+                        <div class="pull-left">
+                            {% block other_buttons %}{% endblock %}
+                        </div>
+                        <div class="pull-right">
+                            
+                            <button type="button" class="btn btn-default" onclick="window.location.href='{{redirectUrl}}'">返回</button>
+                            <input type="submit" value="{{ submit_text }}" class="btn btn-primary ">
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

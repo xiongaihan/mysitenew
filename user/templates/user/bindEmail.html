@@ -1,0 +1,51 @@
+{% extends 'form.html'%}
+
+{% block other_buttons %}
+<button type="button" id="send_code" class="btn btn-default">点击发送验证码</button>
+
+<script>
+    // 点击发送验证码
+    $("#send_code").click(function () {
+        var email = $('#id_email').val()
+        if (email == '') {
+            $('#tip').text('*邮箱不能为空')
+            return false
+        }
+        // 发送验证码
+        $.ajax({
+            url:"{% url 'send_verification_code' %}",
+            type:"GET",
+            data:{
+                'email':email,
+                'send_for':'bind_email_code'
+            },
+            caches:false,
+            success:function(data){
+                if(data['status']=='ERROR'){
+                    alert(data['status'])
+                }
+            }
+
+        })
+        // 把按钮变灰
+        $(this).addClass('disabled')
+        $(this).attr('disabled',true)
+        var time=30
+        $(this).text(time+'s')
+        var intervarId=setInterval(()=>{
+            if(time<=0){
+                clearInterval(intervarId)
+                // 把按钮变灰
+                $(this).removeClass('disabled')
+                $(this).attr('disabled',false)
+                $(this).text('发送验证码')
+                return false
+            }
+            time--
+            $(this).text(time+'s')
+        },1000)
+
+    })
+</script>
+
+{% endblock %}

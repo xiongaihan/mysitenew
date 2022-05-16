@@ -1,0 +1,68 @@
+.blog-list-type {
+    list-style-type: none;
+}
+
+.blog h3 {
+    margin-top: 0.5em;
+
+}
+
+/* 除了最后一个元素 */
+.blog:not(:last-child) {
+    margin-bottom: 2em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1em;
+}
+
+.blog-info {
+    margin: 1px;
+}
+
+.blog-detail {
+    list-style-type: none;
+}
+
+.blog-detail li {
+    display: inline-block;
+}
+
+.blog-detail-content {
+    text-indent: 2em;
+}
+
+div.paginator {
+
+    text-align: center;
+}
+
+.blog_more {
+    margin-top: 20px;
+}
+
+.comment-area {
+    margin-top: 2em;
+    /* border: dashed 1px orange; */
+    padding: 2em;
+}
+
+.comment-title{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.4em;
+}
+.django-ckeditor-widget{
+    width: 100%;
+}
+.comment{
+    border-bottom: 1px dashed #ccc;
+}
+.reply{
+    margin-left: 2em;
+}
+div.like{
+    color: #337ab7;
+    cursor: pointer;
+}
+
+div.like .active{
+    color: red
+}

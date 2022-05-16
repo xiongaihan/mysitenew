@@ -1,0 +1,6 @@
+<!-- blog/blog_list.html这里的前面不能多一个斜杠，否则会报错 -->
+{% extends 'blog/blog_list.html' %}
+{% block title %}{{blog_name}}{% endblock %}
+{% block blog_list_title %}{{blog_name}}-博客分类
+<a href="{% url 'blog_list' %}">查看全部分类</a>
+{% endblock %}
